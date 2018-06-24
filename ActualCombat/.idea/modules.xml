@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ac-auth/ac-auth.iml" filepath="$PROJECT_DIR$/ac-auth/ac-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ac-parent/ac-parent.iml" filepath="$PROJECT_DIR$/ac-parent/ac-parent.iml" />
+    </modules>
+  </component>
+</project>
