@@ -5,6 +5,7 @@
       <list>
         <option value="$PROJECT_DIR$/ac-parent/pom.xml" />
         <option value="$PROJECT_DIR$/ac-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/ac-generator/pom.xml" />
       </list>
     </option>
   </component>

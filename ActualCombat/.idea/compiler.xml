@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ac-auth" />
+        <module name="ac-generator" />
         <module name="ac-parent" />
         <module name="acauth" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ac-auth" target="1.5" />
+      <module name="ac-generator" target="1.5" />
       <module name="ac-parent" target="1.5" />
       <module name="acauth" target="1.5" />
     </bytecodeTargetLevel>
