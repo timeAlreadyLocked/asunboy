@@ -33,8 +33,15 @@ create table ac_login_type(
 	primary key (id)
 );
 create table ac_third_party_login(
-	id bigint(20) unsigned not null ,
 	user_id bigint(20) unsigned not null comment '用户ID',
+	login_type_id tinyint not null comment '登陆类型'
 	third_party_login_id bigint(20) unsigned not null comment '第三方登录Id',
-	primary key (id)
+	primary key (user_id,login_type_id,third_party_login_id)
+);
+create table ac_session(
+	id bigint(20) unsigned not null ,
+	token varchar(200) not null '用户令牌',
+	user_id bigint(20) not null '用户id',
+	expire_seconds int default(604800) not null comment '',
+	create_on datetime not null default current_timestamp comment '创建时间'
 );
