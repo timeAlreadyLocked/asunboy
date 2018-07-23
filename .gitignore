@@ -36,4 +36,3 @@ target
 transaction-logs
 .flattened-pom.xml
 secrets.yml
-generatorConfig.xml
