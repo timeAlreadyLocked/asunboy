@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.asunboy.auth.data.AcLoginMapper">
+  <resultMap id="BaseResultMap" type="cn.asunboy.auth.entity.AcLogin">
+    <id column="login_type_id" jdbcType="TINYINT" property="loginTypeId" />
+    <id column="login_target_id" jdbcType="BIGINT" property="loginTargetId" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    login_type_id, login_target_id, login_name
+  </sql>
+  <select id="selectByExample" parameterType="cn.asunboy.auth.entity.AcLoginExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="cn.asunboy.auth.entity.AcLoginKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_login
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.asunboy.auth.entity.AcLoginKey">
+    delete from ac_login
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.asunboy.auth.entity.AcLoginExample">
+    delete from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.asunboy.auth.entity.AcLogin">
+    insert into ac_login (login_type_id, login_target_id, login_name
+      )
+    values (#{loginTypeId,jdbcType=TINYINT}, #{loginTargetId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.asunboy.auth.entity.AcLogin">
+    insert into ac_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginTypeId != null">
+        login_type_id,
+      </if>
+      <if test="loginTargetId != null">
+        login_target_id,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginTypeId != null">
+        #{loginTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="loginTargetId != null">
+        #{loginTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.asunboy.auth.entity.AcLoginExample" resultType="java.lang.Integer">
+    select count(*) from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ac_login
+    <set>
+      <if test="record.loginTypeId != null">
+        login_type_id = #{record.loginTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.loginTargetId != null">
+        login_target_id = #{record.loginTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="record.loginName != null">
+        login_name = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ac_login
+    set login_type_id = #{record.loginTypeId,jdbcType=TINYINT},
+      login_target_id = #{record.loginTargetId,jdbcType=BIGINT},
+      login_name = #{record.loginName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.asunboy.auth.entity.AcLogin">
+    update ac_login
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.asunboy.auth.entity.AcLogin">
+    update ac_login
+    set login_name = #{loginName,jdbcType=VARCHAR}
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="cn.asunboy.auth.entity.AcLogin">
+    <id column="login_type_id" jdbcType="TINYINT" property="loginTypeId" />
+    <id column="login_target_id" jdbcType="BIGINT" property="loginTargetId" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    login_type_id, login_target_id, login_name
+  </sql>
+  <select id="selectByExample" parameterType="cn.asunboy.auth.entity.AcLoginExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="cn.asunboy.auth.entity.AcLoginKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_login
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.asunboy.auth.entity.AcLoginKey">
+    delete from ac_login
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.asunboy.auth.entity.AcLoginExample">
+    delete from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.asunboy.auth.entity.AcLogin">
+    insert into ac_login (login_type_id, login_target_id, login_name
+      )
+    values (#{loginTypeId,jdbcType=TINYINT}, #{loginTargetId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.asunboy.auth.entity.AcLogin">
+    insert into ac_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginTypeId != null">
+        login_type_id,
+      </if>
+      <if test="loginTargetId != null">
+        login_target_id,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginTypeId != null">
+        #{loginTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="loginTargetId != null">
+        #{loginTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.asunboy.auth.entity.AcLoginExample" resultType="java.lang.Integer">
+    select count(*) from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ac_login
+    <set>
+      <if test="record.loginTypeId != null">
+        login_type_id = #{record.loginTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.loginTargetId != null">
+        login_target_id = #{record.loginTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="record.loginName != null">
+        login_name = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ac_login
+    set login_type_id = #{record.loginTypeId,jdbcType=TINYINT},
+      login_target_id = #{record.loginTargetId,jdbcType=BIGINT},
+      login_name = #{record.loginName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.asunboy.auth.entity.AcLogin">
+    update ac_login
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.asunboy.auth.entity.AcLogin">
+    update ac_login
+    set login_name = #{loginName,jdbcType=VARCHAR}
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="cn.asunboy.entity.AcLogin">
+    <id column="login_type_id" jdbcType="TINYINT" property="loginTypeId" />
+    <id column="login_target_id" jdbcType="BIGINT" property="loginTargetId" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    login_type_id, login_target_id, login_name
+  </sql>
+  <select id="selectByExample" parameterType="cn.asunboy.entity.AcLoginExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="cn.asunboy.entity.AcLoginKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ac_login
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.asunboy.entity.AcLoginKey">
+    delete from ac_login
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.asunboy.entity.AcLoginExample">
+    delete from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.asunboy.entity.AcLogin">
+    insert into ac_login (login_type_id, login_target_id, login_name
+      )
+    values (#{loginTypeId,jdbcType=TINYINT}, #{loginTargetId,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.asunboy.entity.AcLogin">
+    insert into ac_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginTypeId != null">
+        login_type_id,
+      </if>
+      <if test="loginTargetId != null">
+        login_target_id,
+      </if>
+      <if test="loginName != null">
+        login_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginTypeId != null">
+        #{loginTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="loginTargetId != null">
+        #{loginTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.asunboy.entity.AcLoginExample" resultType="java.lang.Integer">
+    select count(*) from ac_login
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ac_login
+    <set>
+      <if test="record.loginTypeId != null">
+        login_type_id = #{record.loginTypeId,jdbcType=TINYINT},
+      </if>
+      <if test="record.loginTargetId != null">
+        login_target_id = #{record.loginTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="record.loginName != null">
+        login_name = #{record.loginName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ac_login
+    set login_type_id = #{record.loginTypeId,jdbcType=TINYINT},
+      login_target_id = #{record.loginTargetId,jdbcType=BIGINT},
+      login_name = #{record.loginName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.asunboy.entity.AcLogin">
+    update ac_login
+    <set>
+      <if test="loginName != null">
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.asunboy.entity.AcLogin">
+    update ac_login
+    set login_name = #{loginName,jdbcType=VARCHAR}
+    where login_type_id = #{loginTypeId,jdbcType=TINYINT}
+      and login_target_id = #{loginTargetId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -27,8 +27,8 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="cn.asunboy.entity"
-                            targetProject="D:/lpj/asunboy/ActualCombat/ac-entity-base/src/main/java">
+        <javaModelGenerator targetPackage="cn.asunboy.auth.entity"
+                            targetProject="D:/lpj/asunboy/ActualCombat/ac-auth/ac-auth-entity/src/main/java">
             <!-- optional.是否对model添加 构造函数 -->
             <property name="constructorBased" value="false"/>
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
@@ -41,7 +41,7 @@
 
         <!-- 生成映射文件的包名和位置-->
         <sqlMapGenerator targetPackage="mapper"
-                         targetProject="D:/lpj/asunboy/ActualCombat/ac-dao-base/src/main/resources">
+                         targetProject="D:/lpj/asunboy/ActualCombat/ac-auth/ac-auth-data/src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
@@ -49,8 +49,8 @@
                 type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.asunboy.dao"
-                             targetProject="D:/lpj/asunboy/ActualCombat/ac-dao-base/src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.asunboy.auth.data"
+                             targetProject="D:/lpj/asunboy/ActualCombat/ac-auth/ac-auth-data/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

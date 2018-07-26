@@ -4,9 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.asunboy</groupId>
+    <parent>
+        <groupId>cn.asunboy</groupId>
+        <artifactId>ac-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../ac-parent/pom.xml</relativePath>
+    </parent>
+    <groupId>cn.asunboy</groupId>
     <artifactId>ac-auth</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-
-
+    <modules>
+        <module>ac-auth-dao</module>
+        <module>ac-auth-service</module>
+        <module>ac-auth-web</module>
+        <module>ac-auth-app</module>
+        <module>ac-auth-model</module>
+        <module>ac-auth-data</module>
+        <module>ac-auth-entity</module>
+    </modules>
 </project>

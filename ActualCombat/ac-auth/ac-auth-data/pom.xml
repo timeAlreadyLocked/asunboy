@@ -2,22 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ac-auth</artifactId>
+        <groupId>cn.asunboy</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ac-dao-base</artifactId>
-    <groupId>cn.asunboy</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>ac-auth-data</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>cn.asunboy</groupId>
-            <artifactId>ac-entity-base</artifactId>
+            <artifactId>ac-dao-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.2.8</version>
+            <groupId>cn.asunboy</groupId>
+            <artifactId>ac-auth-entity</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
 </project>
