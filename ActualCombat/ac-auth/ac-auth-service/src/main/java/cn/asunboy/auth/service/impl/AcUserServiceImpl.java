@@ -2,6 +2,7 @@ package cn.asunboy.auth.service.impl;
 
 import cn.asunboy.auth.data.AcUserMapper;
 import cn.asunboy.auth.service.AcUserServcie;
+import cn.asunboy.entity.AcUser;
 
 /**
  * @author LiPengJu
@@ -13,7 +14,6 @@ public class AcUserServiceImpl implements AcUserServcie {
         // 逻辑判断
 //        AcUserMapper
         // 插入数据
-
         return null;
     }
 }

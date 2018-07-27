@@ -19,7 +19,7 @@
         </dependency>
         <dependency>
             <groupId>cn.asunboy</groupId>
-            <artifactId>ac-auth-entity</artifactId>
+            <artifactId>ac-auth-model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
