@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button" onclick="cliccc()" value="请求">请求</button>
+</body>
+<script type="application/javascript">
+    function cliccc() {
+        const http = new XMLHttpRequest()
+        http.open("GET", "http://localhost:8011/login", true)
+        http.send()
+        http.onreadystatechange = function () {
+            console.log(http.responseText)
+        }
+    }
+
+
+</script>
+</html>
