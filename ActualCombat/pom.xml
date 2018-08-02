@@ -15,6 +15,7 @@
         <module>ac-service-base</module>
         <module>ac-dao-base</module>
         <module>ac-web-base</module>
+        <module>ac-core</module>
     </modules>
 
 </project>
