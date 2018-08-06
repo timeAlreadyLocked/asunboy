@@ -11,5 +11,11 @@
     <groupId>cn.asunboy</groupId>
     <artifactId>ac-auth-entity</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>cn.asunboy</groupId>
+            <artifactId>ac-entity-base</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

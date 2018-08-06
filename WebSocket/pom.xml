@@ -26,6 +26,9 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.transaction/jta -->
+        <!-- https://mvnrepository.com/artifact/javax.transaction/jta -->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -34,12 +37,20 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>org.springframework.web</artifactId>
-            <version>3.2.1.RELEASE</version>
+            <artifactId>spring-core</artifactId>
+            <version>4.1.4.RELEASE</version>
         </dependency>
-
-
-
+        <!-- 添加spring-context包 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.1.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.1.4.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>

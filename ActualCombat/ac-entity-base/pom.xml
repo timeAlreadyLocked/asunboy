@@ -7,4 +7,11 @@
     <artifactId>ac-entity-base</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.asunboy</groupId>
+            <artifactId>ac-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

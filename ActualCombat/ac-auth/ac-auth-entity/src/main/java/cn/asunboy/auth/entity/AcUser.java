@@ -1,8 +1,10 @@
 package cn.asunboy.auth.entity;
 
+import cn.asunboy.lang.VersionSupport;
+
 import java.util.Date;
 
-public class AcUser {
+public class AcUser implements VersionSupport {
     private Long id;
 
     private String nickname;
@@ -133,6 +135,26 @@ public class AcUser {
 
     public void setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
+    }
+
+    @Override
+    public Long getCreatedBy() {
+        return null;
+    }
+
+    @Override
+    public void setCreatedBy(Long createdBy) {
+
+    }
+
+    @Override
+    public void setModifiedBy(Long modifiedBy) {
+
+    }
+
+    @Override
+    public Long getModifiedBy() {
+        return null;
     }
 
     public Date getModifiedOn() {

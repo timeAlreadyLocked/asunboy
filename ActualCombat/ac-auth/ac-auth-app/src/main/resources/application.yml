@@ -1,5 +1,14 @@
 server:
   port: 8111
-spring:
-  mvc:
-    static-path-pattern: /resources/**
+#spring:
+#  mvc:
+#    static-path-pattern: /resources/**
+#  datasource:
+#    dbcp2:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      url: jdbc:mysql//localhost/actual_combat
+#      username: root
+#      password: 123456
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: cn.asunboy.auth.entity

@@ -2,9 +2,13 @@ package cn.asunboy.auth.data;
 
 import cn.asunboy.auth.entity.AcUser;
 import cn.asunboy.auth.entity.AcUserExample;
+
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface AcUserMapper {
     int countByExample(AcUserExample example);
 

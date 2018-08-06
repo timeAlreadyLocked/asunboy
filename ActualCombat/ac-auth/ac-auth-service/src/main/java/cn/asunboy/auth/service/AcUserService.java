@@ -9,7 +9,7 @@ import java.util.List;
  * @author LiPengJu
  * @date 2018/7/25
  */
-public interface AcUserServcie {
+public interface AcUserService {
     /**
      * 创建用户
      * @param user 用户信息
@@ -35,5 +35,7 @@ public interface AcUserServcie {
      * @return 用户集合
      */
     List<AcUser> listUser();
+
+    AcUser getUserByUserNameAndPwd(String loginName,String loginPwd);
 
 }
