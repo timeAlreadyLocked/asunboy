@@ -33,6 +33,8 @@ public class AcUser implements VersionSupport {
 
     private Date modifiedOn;
 
+    private String text;
+
     public Long getId() {
         return id;
     }
@@ -129,10 +131,12 @@ public class AcUser implements VersionSupport {
         this.lastLoginOn = lastLoginOn;
     }
 
+    @Override
     public Date getCreatedOn() {
         return createdOn;
     }
 
+    @Override
     public void setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
     }
@@ -148,20 +152,30 @@ public class AcUser implements VersionSupport {
     }
 
     @Override
+    public Long getModifiedBy() {
+        return null;
+    }
+
+    @Override
     public void setModifiedBy(Long modifiedBy) {
 
     }
 
     @Override
-    public Long getModifiedBy() {
-        return null;
-    }
-
     public Date getModifiedOn() {
         return modifiedOn;
     }
 
+    @Override
     public void setModifiedOn(Date modifiedOn) {
         this.modifiedOn = modifiedOn;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text == null ? null : text.trim();
     }
 }

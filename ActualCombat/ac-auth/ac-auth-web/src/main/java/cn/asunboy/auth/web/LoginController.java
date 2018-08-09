@@ -29,8 +29,4 @@ public class LoginController {
         return ResponseEntity.ok(user);
 //        return ResponseEntity.ok(new AcUser());
     }
-
-    public static void main(String[] args) {
-        SpringApplication.run(LoginController.class, args);
-    }
 }

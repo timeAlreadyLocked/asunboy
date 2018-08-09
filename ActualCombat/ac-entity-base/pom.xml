@@ -6,7 +6,12 @@
     <groupId>cn.asunboy</groupId>
     <artifactId>ac-entity-base</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <parent>
+        <artifactId>ac-parent</artifactId>
+        <groupId>cn.asunboy</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../ac-parent/pom.xml</relativePath>
+    </parent>
     <dependencies>
         <dependency>
             <groupId>cn.asunboy</groupId>
