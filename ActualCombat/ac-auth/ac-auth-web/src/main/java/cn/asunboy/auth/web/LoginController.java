@@ -37,7 +37,7 @@ public class LoginController {
         return ResponseEntity.ok(user);
 //        return ResponseEntity.ok(new AcUser());
     }
-    @GetMapping("/loginPost")
+    @PostMapping("/loginPost")
     public void loginPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 //        AcUser user = userService.getUserByUserNameAndPwd(loginName, loginPwd);
         System.out.println(response);

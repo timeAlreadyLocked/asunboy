@@ -1,6 +1,9 @@
 package cn.asunboy.auth.service;
 
+import cn.asunboy.Page;
+import cn.asunboy.PageQueryCond;
 import cn.asunboy.auth.entity.AcUser;
+import cn.asunboy.auth.model.UserQueryCond;
 
 import java.util.List;
 
@@ -38,4 +41,5 @@ public interface AcUserService {
 
     AcUser getUserByUserNameAndPwd(String loginName,String loginPwd);
 
+    Page<AcUser> listUser(PageQueryCond<UserQueryCond> cond);
 }
