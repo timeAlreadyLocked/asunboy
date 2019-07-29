@@ -104,9 +104,9 @@ public class CurrentDbSchemaHolder {
     }
 
     /**
-     * 清除超时无人使用的数据源。
+     * 清除超时无人使用的数据源。 确保连接池中的连接被释放,map中引用对象被回收
      */
-    public synchronized void clearIdleDbSchema() {
+    public void clearIdleDbSchema() {
         Iterator<Map.Entry<Long, CurrentDbSchemaTimer>> iter = currentDbSchemaTimerMap.entrySet().iterator();
         for (; iter.hasNext(); ) {
             Map.Entry<Long, CurrentDbSchemaTimer> entry = iter.next();
@@ -116,7 +116,7 @@ public class CurrentDbSchemaHolder {
         }
     }
 
-    public synchronized void clearIdleDbSchema(Long id) {
+    public void clearIdleDbSchema(Long id) {
         currentDbSchemaTimerMap.remove(id);
     }
 

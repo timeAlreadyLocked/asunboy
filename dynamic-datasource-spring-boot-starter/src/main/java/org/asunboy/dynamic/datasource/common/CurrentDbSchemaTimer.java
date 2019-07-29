@@ -44,8 +44,7 @@ public class CurrentDbSchemaTimer {
         if (dataSource instanceof HikariDataSource)
             hikariDataSource = (HikariDataSource) dataSource;
         if (System.currentTimeMillis() - lastUseTime > idlePeriodTime) {
-            if (!hikariDataSource.isClosed())
-                hikariDataSource.close();
+            hikariDataSource.close();
             return true;
         }
         return hikariDataSource.isClosed();
