@@ -20,17 +20,42 @@ public class GlobalLockController {
 
     @GetMapping("/1")
     public RestResult test1(@RequestParam("num") Integer num) {
-        return new RestResult(globalLockService.test1(num) );
+        return new RestResult(globalLockService.test1(num));
     }
 
     @GetMapping("/2")
-    public RestResult test2(@RequestParam("num") Integer num){
+    public RestResult test2(@RequestParam("num") Integer num) {
         return new RestResult(globalLockService.test2(num));
     }
 
     @GetMapping("/3")
-    public RestResult test3(@RequestParam("num") Integer num){
+    public RestResult test3(@RequestParam("num") Integer num) {
         return new RestResult(globalLockService.test3(num));
+    }
+
+    @GetMapping("/5")
+    public RestResult test5(Integer num) {
+        return new RestResult(globalLockService.test5(num));
+    }
+
+    @GetMapping("/6")
+    public RestResult test56() {
+        return new RestResult(globalLockService.test6());
+    }
+
+    @GetMapping("/7")
+    public RestResult test7(Integer num) {
+        return new RestResult(globalLockService.test7(num));
+    }
+
+    @GetMapping("/8")
+    public RestResult test8() {
+        return new RestResult(globalLockService.test8());
+    }
+
+    @GetMapping("/9")
+    public RestResult test9() {
+        return new RestResult(globalLockService.test9());
     }
 
 }

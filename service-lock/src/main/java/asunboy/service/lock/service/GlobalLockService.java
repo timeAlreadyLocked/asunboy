@@ -21,15 +21,15 @@ public class GlobalLockService {
     private GlobalLockService globalLockService;
 
     @Transactional
-    @GlobalLock(key = "#time+'-saa'",message = "正在同步中",waitLock = false)
+    @GlobalLock(key = "#time+'-saa'", message = "正在同步中", waitLock = false)
     public String test1(Integer time) {
         try {
             System.out.println("业务代码执行中----test1---");
-            appMapper.updateByPrimaryKeySelective(App.builder().id(1001).description(System.currentTimeMillis()+"").build());
+            appMapper.updateByPrimaryKeySelective(App.builder().id(1001).description(System.currentTimeMillis() + "").build());
             App app = appMapper.selectByPrimaryKey(1001);
-            System.out.println("test1---修改后的数据但没提交："+app.getDescription());
+            System.out.println("test1---修改后的数据但没提交：" + app.getDescription());
             globalLockService.test2(null);
-            globalLockService.test4("a","b");
+            globalLockService.test4("a", "b");
             Thread.sleep(time);
             System.out.println("业务代码执行完成---");
         } catch (InterruptedException e) {
@@ -44,9 +44,9 @@ public class GlobalLockService {
     public String test2(Integer time) {
         try {
             System.out.println("----test2");
-            appMapper.updateByPrimaryKeySelective(App.builder().id(101).description(System.currentTimeMillis()+"").build());
+            appMapper.updateByPrimaryKeySelective(App.builder().id(101).description(System.currentTimeMillis() + "").build());
             App app = appMapper.selectByPrimaryKey(101);
-            System.out.println("test2---修改后的数据但没提交："+app.getDescription());
+            System.out.println("test2---修改后的数据但没提交：" + app.getDescription());
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -65,8 +65,43 @@ public class GlobalLockService {
     }
 
     @GlobalLock
-    public String test4(String a,String b){
+    public String test4(String a, String b) {
         System.out.println("test4");
         return "test4";
+    }
+
+    @GlobalLock(key = {"A", "B"})
+    public String test5(Integer time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "test5";
+    }
+
+    @GlobalLock(key = {"C", "B"}, waitTime = 10)
+    public String test6() {
+        return "test6";
+    }
+
+    @GlobalLock("A")
+    public String test7(Integer time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "test7";
+    }
+
+    @GlobalLock("B")
+    public String test8() {
+        return "test8";
+    }
+
+    @GlobalLock({"A", "B"})
+    public String test9() {
+        return "test9";
     }
 }
