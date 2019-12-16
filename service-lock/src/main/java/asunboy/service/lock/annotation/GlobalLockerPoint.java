@@ -85,7 +85,7 @@ public class GlobalLockerPoint {
                 }
             }
             if (!isSuccess)
-                throw new ServiceException("1", "业务执行过长请稍后再试!");
+                throw new ServiceException(globalLock.code(), "业务执行过长请稍后再试!");
         }
     }
 
