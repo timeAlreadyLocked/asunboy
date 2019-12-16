@@ -40,6 +40,8 @@ public @interface GlobalLock {
      */
     boolean waitLock() default true;
 
+    String code() default "1";
+
     /**
      * 消息
      *

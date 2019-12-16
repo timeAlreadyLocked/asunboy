@@ -4,10 +4,13 @@ import asunboy.service.lock.annotation.GlobalLock;
 import asunboy.service.lock.exception.ServiceException;
 import asunboy.service.lock.mapper.AppMapper;
 import asunboy.service.lock.model.App;
+import com.sun.org.apache.bcel.internal.generic.FADD;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.security.Key;
 
 /**
  * @author LiPengJu
@@ -80,12 +83,12 @@ public class GlobalLockService {
         return "test5";
     }
 
-    @GlobalLock(key = {"C", "B"}, waitTime = 10)
+    @GlobalLock(key = {"C", "B"}, waitTime = 10,waitLock = false)
     public String test6() {
         return "test6";
     }
 
-    @GlobalLock("A")
+    @GlobalLock(key = "B")
     public String test7(Integer time) {
         try {
             Thread.sleep(time);
@@ -95,7 +98,7 @@ public class GlobalLockService {
         return "test7";
     }
 
-    @GlobalLock("B")
+    @GlobalLock(key = "A",waitLock = false,message = "正在同步中",code = "2")
     public String test8() {
         return "test8";
     }

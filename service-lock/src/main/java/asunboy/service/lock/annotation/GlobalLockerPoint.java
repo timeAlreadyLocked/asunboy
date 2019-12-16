@@ -50,14 +50,26 @@ public class GlobalLockerPoint {
             locks[index] = lock;
         }
         RLock multiLock = redissonClient.getMultiLock(locks);
-        RFuture<Boolean> tryLockAsync = multiLock.tryLockAsync(waitTime, globalLock.holdTime(), TimeUnit.SECONDS);
-        Boolean result = tryLockAsync.get();
-        //直接返回结果类型的锁
-        if (!result && !globalLock.waitLock())
-            throw new ServiceException(globalLock.message());
-        //没有得到锁---impossible
-        if (!result)
-            throw new ServiceException("Why didn't you get the lock?");
+        Boolean result;
+        if (globalLock.waitLock()) {
+            RFuture<Boolean> tryLockAsync = multiLock.tryLockAsync(waitTime, globalLock.holdTime(), TimeUnit.SECONDS);
+            result = tryLockAsync.get();
+            //没有得到锁---impossible
+            if (!result)
+                throw new ServiceException("Why didn't you get the lock?");
+        } else {
+            for (RLock lock : locks) {
+                result = lock.tryLock(waitTime, globalLock.holdTime(), TimeUnit.SECONDS);
+                //直接返回结果类型的锁
+                if (!result && !globalLock.waitLock()) {
+                    for (RLock item : locks) {
+                        if (item.isLocked() && item != lock)
+                            item.unlock();
+                    }
+                    throw new ServiceException(globalLock.code(), globalLock.message());
+                }
+            }
+        }
         try {
             //执行业务
             return point.proceed();
