@@ -58,4 +58,8 @@ public class GlobalLockController {
         return new RestResult(globalLockService.test9());
     }
 
+    @GetMapping("/10")
+    public RestResult test10() {
+        return new RestResult(globalLockService.test10());
+    }
 }

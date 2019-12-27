@@ -4,6 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * 分布式锁注解
+ * redisson-spring-boot-starter 3.11.0
  *
  * @author LiPengJu
  * @date: 2019/12/13
@@ -39,6 +40,14 @@ public @interface GlobalLock {
      * @return
      */
     boolean waitLock() default true;
+
+    /**
+     * 只验证锁而不加锁？
+     * 为true:  waitLock,waitTime,holdTime参数失效
+     *
+     * @return
+     */
+    boolean verifyLock() default false;
 
     String code() default "1";
 

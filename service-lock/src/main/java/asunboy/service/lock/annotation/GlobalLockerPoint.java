@@ -15,6 +15,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 消息自定义? 前端解决
+ *
  * @author LiPengJu
  * @date: 2019/12/13
  */
@@ -35,6 +37,7 @@ public class GlobalLockerPoint {
         String[] keys = globalLock.key();
         String[] values = globalLock.value();
         String[] userKeys = keys.length == 0 ? values : keys;
+        boolean waitLock = globalLock.verifyLock() ? false : globalLock.waitLock();
         if (userKeys.length == 0)
             throw new RuntimeException("why key is null?");
         Object[] keyValues = new Object[userKeys.length];
@@ -44,24 +47,29 @@ public class GlobalLockerPoint {
         }
         //开始加锁
         RLock[] locks = new RLock[keyValues.length];
-        int waitTime = globalLock.waitLock() ? globalLock.waitTime() : 0;
+        int waitTime = waitLock ? globalLock.waitTime() : 0;
         for (int index = 0; index < keyValues.length; index++) {
             RLock lock = redissonClient.getLock(keyValues[index].toString());
             locks[index] = lock;
         }
         RLock multiLock = redissonClient.getMultiLock(locks);
         Boolean result;
-        if (globalLock.waitLock()) {
+        if (waitLock) {
             RFuture<Boolean> tryLockAsync = multiLock.tryLockAsync(waitTime, globalLock.holdTime(), TimeUnit.SECONDS);
             result = tryLockAsync.get();
             //没有得到锁---impossible
             if (!result)
                 throw new ServiceException("Why didn't you get the lock?");
         } else {
+            //非等待锁不需要控制所有锁都获得后才去计算当前锁(指定锁的集合)的持有时间
             for (RLock lock : locks) {
-                result = lock.tryLock(waitTime, globalLock.holdTime(), TimeUnit.SECONDS);
+                if (globalLock.verifyLock()) {
+                    result = lock.isLocked();
+                } else {
+                    result = lock.tryLock(waitTime, globalLock.holdTime(), TimeUnit.SECONDS);
+                }
                 //直接返回结果类型的锁
-                if (!result && !globalLock.waitLock()) {
+                if (!result) {
                     for (RLock item : locks) {
                         if (item.isLocked() && item != lock)
                             item.unlock();

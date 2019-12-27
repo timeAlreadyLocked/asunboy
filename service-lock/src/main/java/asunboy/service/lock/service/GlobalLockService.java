@@ -73,7 +73,7 @@ public class GlobalLockService {
         return "test4";
     }
 
-    @GlobalLock(key = {"A", "B"})
+    @GlobalLock(key = {"A", "B"}, holdTime = 10)
     public String test5(Integer time) {
         try {
             Thread.sleep(time);
@@ -83,7 +83,7 @@ public class GlobalLockService {
         return "test5";
     }
 
-    @GlobalLock(key = {"C", "B"}, waitTime = 10,waitLock = false)
+    @GlobalLock(key = {"C", "B"}, waitTime = 10)
     public String test6() {
         return "test6";
     }
@@ -98,7 +98,7 @@ public class GlobalLockService {
         return "test7";
     }
 
-    @GlobalLock(key = "A",waitLock = false,message = "正在同步中",code = "2")
+    @GlobalLock(key = "A", waitLock = false, message = "正在同步中", code = "2")
     public String test8() {
         return "test8";
     }
@@ -106,5 +106,10 @@ public class GlobalLockService {
     @GlobalLock({"A", "B"})
     public String test9() {
         return "test9";
+    }
+
+    @GlobalLock(value = "A", waitLock = false, code = "100", message = "正在生成报表")
+    public String test10() {
+        return "test10";
     }
 }
